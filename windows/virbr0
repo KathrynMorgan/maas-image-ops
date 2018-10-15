@@ -1,0 +1,7 @@
+<network connections='3'>
+  <name>virbr0</name>
+  <forward mode='bridge'/>
+  <bridge name='maas-net'/>
+  <virtualport type='openvswitch'/>
+</network>
+
