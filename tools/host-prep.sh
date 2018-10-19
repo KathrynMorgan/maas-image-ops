@@ -16,4 +16,4 @@ add-apt-key BEEF83C77C14C957 --keyserver keyserver.ubuntu.com
 
 # Install packages
 apt update
-apt install build-essential subversion fakeroot qemu qemu-kvm qemu-utils libvirt-bin libvirt0 maas-image-builder -y
+apt install tmux build-essential subversion fakeroot qemu qemu-kvm qemu-utils libvirt-bin libvirt0 maas-image-builder -y
