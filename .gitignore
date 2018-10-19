@@ -1,1 +1,5 @@
-windows/img/*
+**/drivers/INF/*
+**/drivers/virtio/*
+**/iso/**
+**/apt-sources/katamo-maas-image-builder.list
+**/img/*

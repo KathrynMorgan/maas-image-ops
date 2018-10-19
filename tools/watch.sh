@@ -29,8 +29,6 @@ echo "$(date +%D_%H:%M:%S) -- ${curr_STATS}" | tee ./watch.log
 }
 
 while [[ $? == "0" ]]; do
-    [[ -f ${watching} ]] && end_watch || run_watch
+    [[ -f ${watching} ]] && run_watch || end_watch 
     sleep 2
 done
-
-
