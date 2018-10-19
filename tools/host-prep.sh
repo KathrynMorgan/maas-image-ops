@@ -4,6 +4,9 @@
 # Add directory as device to vm in virt-manager
 [[ -d /root/share ]] || mkdir /root/share
 [[ -f /dev/share ]] mount -t 9p -o trans=virtio /dev/share /root/share
+[[ -d ./drivers ]] || mkdir drivers
+[[ -d ./iso ]] || mkdir iso 
+[[ -d ./img ]] || mkdir img 
 
 # Link private repo
 # Download from https://launchpad.net/~/+archivesubscriptions/
