@@ -8,8 +8,7 @@ maas-image-builder \
   --vcpus "4" \
   -o ${source_ISO} windows \
   --windows-iso ./iso/${source_ISO}.iso \
-  --windows-edition win2016hv \
-  --windows-updates \
+  --windows-edition win2016 \
   --windows-drivers /root/maas-img-builder/drivers/INF/ \
   --windows-language en-US 
 
