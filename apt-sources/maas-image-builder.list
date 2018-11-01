@@ -1,4 +1,4 @@
 # Download Repo Data from https://launchpad.net/~/+archivesubscriptions/
 # Find the "maas-image-builder" repo and click "view" to get the content of the following format:
-# deb https://katamo:TwzHRHBXzl66xxxxxxxx@private-ppa.launchpad.net/maas-image-builder-partners/stable/ubuntu bionic main
+# deb https://lp-user-id:passcode@private-ppa.launchpad.net/maas-image-builder-partners/stable/ubuntu bionic main
 

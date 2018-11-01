@@ -1,0 +1,66 @@
+#!/bin/bash
+# Script to keep track of MIB Syntax & Library
+#########################################################################
+#source_ISO=en_windows_server_2016_updated_feb_2018_x64_dvd_11636692
+source_ISO=Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh 
+
+#########################################################################
+# QEMU Resource Allocation
+qemu_RAM="6144"  # 6 GB
+qemu_CORES="4"   # 4 Cores
+
+# Build 
+maas-image-builder \
+  --vcpus ${qemu_CORES} \
+  --ram ${qemu_RAM} \
+  -o ${source_ISO} windows \
+  --windows-iso ./iso/${source_ISO}.iso \
+  --windows-edition win2016 \
+  --windows-updates \
+  --windows-language en-US 
+
+#########################################################################
+# Useful Tips
+#   Access the vnc address at maas-image-builder host localhost:5901
+#   SSH Port forward if necessary:
+#   Then connect with a vnc client @ eg: localhost:5601 
+#   ssh -L 6901:127.0.0.1:5901 root@imgbldr.host
+#   
+#########################################################################
+# maas-image-builder Options 
+# --vcpus ${NUM_VCPUS}
+# --ram ${RAM_VALUE_IN_MiB
+# --i ${BRIDGE_INTERFACE_NAME}
+# --arch [amd64|i386] 
+# --output ${IMG_FILE_OUTPUT_NAME}
+#
+#########################################################################
+# MS Windows optional arguments:
+# --windows-iso ${PATH_TO_WINDOWS_ISO}
+# --windows-license-key ${WINDOWS_LICENSE_KEY}
+# --windows-updates
+# --windows-drivers ${PATH_TO_INF_DIRECTORY}
+# --windows-language en-US 
+# --cloudbase-init CLOUDBASE_INIT
+# --powershell
+#
+# Windows edition flag Options
+# --windows-edition WINDOWS_EDITION
+# win2008r2
+# win2008hvr2
+# win2012
+# win2012hv
+# win2012r2
+# win2012hvr2
+# win2016
+# win2016hv
+#
+#########################################################################
+# RedHat Optional Arguments:
+# --rhel-iso ${PATH_TO_RHEL_ISO}
+# --custom-kickstart ${PATH_TO_KICKSTART}
+#
+#########################################################################
+# CentOS Optional Arguments:
+# --edition EDITION  [5,6,7]
+# --custom-kickstart ${PATH_TO_KICKSTART}

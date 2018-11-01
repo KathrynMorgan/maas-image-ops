@@ -1,0 +1,73 @@
+#!/bin/bash
+#######################################################################
+# This host prep script should prepare an ubuntu OS to run maas-image-builder
+mib_HOME="/root/maas-image-anvil"
+cd ${mib_HOME}
+
+#######################################################################
+# Create MIB Sources File
+
+# Detect Ubuntu Series
+ubuntu_SERIES=$(awk -F[=] '/DISTRIB_CODENAME/{print $2}' </etc/lsb-release)
+
+# Prompt for private url string from launchpad.net
+echo '''
+Open in browser: 
+   https://launchpad.net/~/+archivesubscriptions/64401
+
+Copy ONLY the URL from the "deb" line of the ppa contents.
+
+EXAMPLE: "https://lp-user-id:passcode@private-ppa.launchpad.net/maas-image-builder-partners/stable/ubuntu"
+
+Paste the URL string below & continue with [ENTER]:
+'''
+read -p "Paste URL Only: " mib_PRIVATE_URL
+
+cat <<EOF >/etc/apt/sources.list.d/maas-image-builder.list
+# maas-image-builder repo
+deb ${mib_PRIVATE_URL} ${ubuntu_SERIES} main
+EOF
+
+
+#######################################################################
+# Add MIB repo GPG keys
+apt update 
+[[ $? == "0" ]] && echo "MaaS Image Builder Repo Configured Successfully" || exit 1
+
+
+#######################################################################
+# Install packages
+
+apt update
+apt install -y add-apt-key
+add-apt-key BEEF83C77C14C957 --keyserver keyserver.ubuntu.com
+
+apt update
+apt install tmux \
+	    build-essential \
+	    subversion \
+	    fakeroot \
+	    qemu \
+	    qemu-kvm \
+	    qemu-utils \
+	    libvirt-bin \
+	    libvirt0 \
+	    maas-image-builder -y
+
+
+#######################################################################
+# Create Local Directory Structure
+[[ -d /root/share ]] || mkdir -p /root/share
+[[ -d ./drivers ]]   || mkdir drivers
+[[ -d ./iso ]]       || mkdir iso 
+[[ -d ./img ]]       || mkdir img 
+
+#######################################################################
+# Add executables to PATH
+echo 'export PATH="$PATH:/root/maas-image-anvil/tools/"' >>~/.bashrc
+
+# Add shared host system mount command to .bashrc
+echo 'mount -t 9p -o trans=virtio /dev/share /root/share' >>~/.bashrc
+
+# Source new variables
+source ~/.bashrc
