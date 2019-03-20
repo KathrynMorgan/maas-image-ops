@@ -9,5 +9,5 @@ This repo provides a framework and basic template bash scripts to setup a MIB ho
 6. Run build cmd `. tools/bld-img.sh`
 7. From another terminal or tmux pane, execute `. tools/watch.sh` to monitor progress
 8. When complete, find your new file in the current directory & upload to your maas region server
-9. Import your new image with the following command syntax:
+9. Import your new image with the following command syntax:    
     `maas admin boot-resources create name='windows/win2016' title='Windows Server 2016' architecture='amd64/generic' filetype=ddtgz content@=${/path/to/windows_maas_img_file}`
