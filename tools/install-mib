@@ -31,18 +31,13 @@ EOF
 
 #######################################################################
 # Add MIB repo GPG keys
+apt-key adv --keyserver keyserver.ubuntu.com --recv BEEF83C77C14C957
 apt update 
 [[ $? == "0" ]] && echo "MaaS Image Builder Repo Configured Successfully" || exit 1
 
 
 #######################################################################
 # Install packages
-
-apt update
-apt install -y add-apt-key
-add-apt-key BEEF83C77C14C957 --keyserver keyserver.ubuntu.com
-
-apt update
 apt install tmux \
 	    build-essential \
 	    subversion \

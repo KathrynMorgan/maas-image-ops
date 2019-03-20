@@ -1,20 +1,19 @@
 #!/bin/bash
 # Script to keep track of MIB Syntax & Library
 #########################################################################
-#source_ISO=en_windows_server_2016_updated_feb_2018_x64_dvd_11636692
-source_ISO=Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh 
+source_ISO=Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO
 
 #########################################################################
 # QEMU Resource Allocation
-qemu_RAM="6144"  # 6 GB
-qemu_CORES="4"   # 4 Cores
+qemu_RAM="8192"  # 6 GB Min
+qemu_CORES="6"   # 4 Cores
 
 # Build 
 maas-image-builder \
   --vcpus ${qemu_CORES} \
   --ram ${qemu_RAM} \
   -o ${source_ISO} windows \
-  --windows-iso ./iso/${source_ISO}.iso \
+  --windows-iso ./iso/${source_ISO} \
   --windows-edition win2016 \
   --windows-updates \
   --windows-language en-US 
